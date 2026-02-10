@@ -86,6 +86,176 @@ pip install -r requirements.txt
 - scikit-image
 - Jupyter
 
+### Prerequisites
+
+This repository uses **Git LFS** (Large File Storage) for lecture PDFs, images, and videos.
+
+**⚠️ You MUST install Git LFS before cloning, or files won't download correctly!**
+
+### Step 1: Install Git LFS (One-Time Setup)
+
+Choose your operating system:
+
+<details>
+<summary><b>macOS (with Homebrew)</b></summary>
+
+```bash
+brew install git-lfs
+git lfs install
+```
+</details>
+
+<details>
+<summary><b>macOS (without Homebrew - Apple Silicon M1/M2/M3)</b></summary>
+
+```bash
+# Download and install
+cd ~/Downloads
+curl -L https://github.com/git-lfs/git-lfs/releases/download/v3.4.1/git-lfs-darwin-arm64-v3.4.1.tar.gz -o git-lfs.tar.gz
+tar -xzf git-lfs.tar.gz
+sudo cp git-lfs-3.4.1/git-lfs /usr/local/bin/
+sudo chmod +x /usr/local/bin/git-lfs
+rm -rf git-lfs-3.4.1 git-lfs.tar.gz
+
+# Initialize
+git lfs install
+```
+</details>
+
+<details>
+<summary><b>Windows</b></summary>
+
+1. Download installer from: https://git-lfs.github.com/
+2. Run the installer (it will add Git LFS to your Git installation)
+3. Open Git Bash or Command Prompt and run:
+```bash
+git lfs install
+```
+</details>
+
+<details>
+<summary><b>Linux (Ubuntu/Debian)</b></summary>
+
+```bash
+sudo apt-get update
+sudo apt-get install git-lfs
+git lfs install
+```
+</details>
+
+<details>
+<summary><b>Linux (Fedora/RHEL)</b></summary>
+
+```bash
+sudo yum install git-lfs
+git lfs install
+```
+</details>
+
+### Step 2: Verify Installation
+
+```bash
+git lfs version
+```
+
+You should see something like: `git-lfs/3.4.1`
+
+### Step 3: Clone the Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/computer-vision.git
+cd computer-vision
+```
+
+**LFS files (PDFs, images, videos) will download automatically during clone!**
+
+### Step 4: Install Python Dependencies
+
+```bash
+# Create virtual environment
+python -m venv cv_env
+source cv_env/bin/activate  # On Windows: cv_env\Scripts\activate
+
+# Install packages
+pip install -r requirements.txt
+```
+
+### Troubleshooting
+
+<details>
+<summary><b>Problem: Files show as "version https://git-lfs.github.com/spec/v1" instead of actual content</b></summary>
+
+**Cause:** Git LFS wasn't installed before cloning
+
+**Solution:**
+```bash
+# Install Git LFS (see Step 1 above)
+git lfs install
+
+# Pull the actual files
+git lfs pull
+```
+
+All files should now download correctly!
+</details>
+
+<details>
+<summary><b>Problem: "git-lfs: command not found"</b></summary>
+
+**Cause:** Git LFS not in PATH
+
+**Solution:**
+
+macOS/Linux - Add to `~/.zshrc` or `~/.bash_profile`:
+```bash
+export PATH="/usr/local/bin:$PATH"
+```
+
+Then reload:
+```bash
+source ~/.zshrc  # or source ~/.bash_profile
+```
+
+Windows - Reinstall Git LFS and ensure "Add to PATH" is checked
+</details>
+
+<details>
+<summary><b>Problem: Clone is very slow</b></summary>
+
+**Cause:** Downloading large LFS files
+
+**This is normal!** The repository includes:
+- 12 lecture PDFs (~10MB)
+- Lab images and videos
+- Sample datasets
+
+Be patient, it only happens once.
+</details>
+
+### What Gets Downloaded?
+
+When you clone, Git LFS automatically downloads:
+- ✅ Lecture slides (PDF format)
+- ✅ Lab images and test data
+- ✅ Video demonstrations
+- ✅ Pre-trained model weights
+- ✅ Sample datasets
+
+Total size: ~50-100 MB (depending on materials)
+
+### For Teaching Assistants
+
+If you're setting up the repository for the first time:
+
+```bash
+# After cloning, verify all LFS files downloaded
+git lfs ls-files
+
+# Should show all PDFs, images, etc.
+# If any are missing:
+git lfs pull
+```
+
 ## Course Policies
 
 ### Attendance
